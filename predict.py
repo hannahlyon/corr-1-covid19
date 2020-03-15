@@ -13,7 +13,7 @@ from sklearn.linear_model import LogisticRegression
 wnl = WordNetLemmatizer()
 
 def build_model():
-    df = pd.read_csv('covid19_questions.csv')
+    df = pd.read_csv('covid19_questions2.csv')
     df = df.sample(len(df))
 
 
@@ -36,14 +36,15 @@ def build_model():
     y = df['intent'].map(intent2index).values
     
     lr = LogisticRegression(multi_class='multinomial').fit(X,y)
-    return lr, word2index
+    return lr, word2index, intent2index
     
     
-def predict_intent(question, model, word2index):
-    index2intent = {v:k for k,v in word2index.items()}
+def predict_intent(question, model, word2index, intent2index):
+    index2intent = {v:k for k,v in intent2index.items()}
     
+    question = question.replace('?','')
     question = question.lower().split(' ')
-    # remove punctuation
+    
     one_hot = np.zeros(len(word2index))
     for word in question:
         new_word = wnl.lemmatize(word)
