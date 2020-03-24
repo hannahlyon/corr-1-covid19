@@ -17,7 +17,6 @@ if __name__=='__main__':
         question = input('Enter question or enter Q to exit: ')
         if question == 'Q':
             break
-        intent = predict_intent(question, model, word2index, intent2index)
-        print(response_dict[intent])
+        predict_intent(question, model, word2index, intent2index)
         
     # how many cases are in my area -- sqllite db with kaggle data 

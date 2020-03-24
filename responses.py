@@ -12,4 +12,6 @@ response_dict = {'symptoms' : 'According to the WHO, "the most common symptoms o
             'precautions' : 'According to the WHO, "you can reduce your chances of being infected or spreading COVID-19 by taking some simple precautions: \nRegularly and thoroughly clean your hands with an alcohol-based hand rub or wash them with soap and water \nMaintain at least 1 metre (3 feet) distance between yourself and anyone who is coughing or sneezing \nAvoid touching eyes, nose and mouth \nStay home if you feel unwell"',
             'treatment' : 'The WHO says, "to date, there is no vaccine and no specific antiviral medicine to prevent or treat COVID-2019. However, those affected should receive care to relieve symptoms. People with serious illness should be hospitalized. Most patients recover thanks to supportive care."'}
 
+unknown = 'Sorry, I don\'t know the answer. Please visit https://www.who.int/health-topics/coronavirus for more information.'
+
 hello = 'Hello! I can help answer your questions about coronavirus (COVID-19). What would you like to know?'

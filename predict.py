@@ -9,6 +9,7 @@ import pandas as pd
 import numpy as np
 from nltk.stem import WordNetLemmatizer
 from sklearn.linear_model import LogisticRegression
+from responses import *
 
 wnl = WordNetLemmatizer()
 
@@ -52,6 +53,17 @@ def predict_intent(question, model, word2index, intent2index):
             idx = word2index[new_word]
             one_hot[idx] = 1
     one_hot = one_hot.reshape(1, -1)
-    pred = model.predict(one_hot)
-    pred = index2intent[pred[0]]
+    
+    probs = model.predict_proba(one_hot)
+    idx = np.argmax(probs[0])
+
+    
+    if probs[0][idx] < 0.5:
+        print(unknown)
+        return
+    else:
+        pred = index2intent[idx]
+        print(response_dict[pred])
+        
+        return
     return pred
