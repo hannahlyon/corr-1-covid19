@@ -11,7 +11,7 @@ from predict import *
 
 if __name__=='__main__':
     print(hello)
-    model, word2index, intent2index = build_model()
+    model, word2index, intent2index = build_model(model='rf')
     
     while True:
         question = input('Enter question or enter Q to exit: ')
