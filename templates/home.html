@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+  <title>Coronavirus Chatbot</title>
+  <head>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <style>
+
+      body {
+        font-family: monospace;
+        font-size: 25px;
+        background-color: #EFFFFF;
+      }
+      h1 {
+        /* background-color: white; */
+        display: inline-block;
+        font-size: 3em;
+        margin: 0;
+        padding: 14px;
+      }
+      h3 {
+        color: grey;
+        font-size: 30px;
+        margin-top: 3px;
+        text-align: center;
+      }
+      #chatbox {
+        margin-left: auto;
+        margin-right: auto;
+        width: 80%;
+        margin-top: 60px;
+        /* max-width: 450px;
+        padding: 15px;
+        border-radius: 15px;
+        background: #ececec; */
+      }
+      #userInput {
+        margin-left: auto;
+        margin-right: auto;
+        width: 80%;
+        margin-top: 60px;
+        /* display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 10px; */
+      }
+      #textInput {
+        width: 90%;
+        border: none;
+        border-bottom: 3px solid skyblue;
+        font-family: monospace;
+        font-size: 17px;
+      }
+      .userText {
+        color: black;
+        font-family: monospace;
+        font-size: 15px;
+        text-align: right;
+        line-height: 30px;
+      }
+      .userText span {
+        background-color: #579ffb;
+        padding: 10px;
+        border-radius: 2px;
+      }
+      .botText {
+        color: black;
+        font-family: monospace;
+        font-size: 15px;
+        text-align: left;
+        line-height: 30px;
+      }
+      .botText span {
+        background-color: #ececec;
+        padding: 10px;
+        border-radius: 2px;
+      }
+      #tidbit {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: 300px;
+      }
+      .boxed {
+        margin-left: auto;
+        margin-right: auto;
+        width: 40%;
+        height: 80%;
+        margin-top: 60px;
+        border: 2px grey;
+        float:right;
+        background:white;
+        opacity: 0.7;
+      }
+      .box {
+        /* border: 2px solid black; */
+        margin-left:30px;
+        float:left
+      }
+      .msger-header {
+        margin-left: auto;
+        margin-right: auto;
+
+        /* justify-content: space-between; */
+        padding: 10px;
+        /* border-bottom: blue; */
+        background: grey;
+        color: black;
+        width: 40%;
+        margin-top: 60px;
+        border: 1px solid grey;
+        float:right
+
+      }
+      .msg-img {
+        width: 70px;
+        height: 70px;
+        margin-right: 10px;
+        /* background: #ddd; */
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        border-radius: 50%;
+      }
+    </style>
+  </head>
+  <body>
+    <p>
+    <p>
+    <center>
+      <h1>
+        COV-19 CHATBOT
+      </h1>
+    </center>
+    <p>
+    <p>
+    <p>
+      <h3>
+        <p>
+          Welcome to our platform that will help you solve questions regarding COV-19
+        </p>
+      </h3>
+
+   <div>
+     <div class="box" >
+     </div>
+
+      <div class="boxed" >
+        <div>
+          <div
+           class="msg-img"
+           style="background-image: url(https://image.flaticon.com/icons/svg/327/327779.svg)"
+          ></div>
+
+          <div id="chatbox">
+            <p class="botText">
+              <span>Hi! I'm here to help you with any concerns about the COV-19</span>
+            </p>
+          </div>
+          <div id="userInput">
+            <input id="textInput" type="text" name="msg" placeholder="Start asking here..." />
+          </div>
+        </div>
+        <script>
+          function getBotResponse() {
+            var rawText = $("#textInput").val();
+            var userHtml = '<p class="userText"><span>' + rawText + "</span></p>";
+            $("#textInput").val("");
+            $("#chatbox").append(userHtml);
+            document
+              .getElementById("userInput")
+              .scrollIntoView({ block: "start", behavior: "smooth" });
+            $.get("/get", { msg: rawText }).done(function(data) {
+              var botHtml = '<p class="botText"><span>' + data + "</span></p>";
+              $("#chatbox").append(botHtml);
+              document
+                .getElementById("userInput")
+                .scrollIntoView({ block: "start", behavior: "smooth" });
+            });
+          }
+          $("#textInput").keypress(function(e) {
+
+            if (e.which == 13) {
+              getBotResponse();
+            }
+          });
+        </script>
+      </div>
+  </div>
+  </body>
+</html>
