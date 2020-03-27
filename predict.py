@@ -48,7 +48,7 @@ def build_model(model='linear'):
     if model =='linear':
         lr = LogisticRegression(multi_class='multinomial').fit(X,y)
     if model == 'knn':
-        lr = KNeighborsClassifier(n_neighbors=3)
+        lr = KNeighborsClassifier(n_neighbors=3).fit(X, y)
     if model == 'ridge':
         lr = RidgeClassifier().fit(X, y)
 
