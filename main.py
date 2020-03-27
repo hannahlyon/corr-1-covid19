@@ -11,6 +11,7 @@ from predict import *
 
 if __name__=='__main__':
     print(hello)
+    # change the model in build_model parameter 
     model, word2index, intent2index = build_model(model='rf')
     
     while True:

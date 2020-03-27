@@ -40,7 +40,7 @@ def build_model(model='linear'):
         X.append(temp)
     X = np.array(X)
     y = df['intent'].map(intent2index).values
-
+    # adding option for different models 
     if model == 'rf':
         lr = RandomForestClassifier(n_estimators = 100).fit(X,y)
     if model == 'nb':
