@@ -11,7 +11,9 @@ from predict import *
 
 if __name__=='__main__':
     print(hello)
-    model, word2index, intent2index = build_model()
+    # change the model in build_model parameter 
+    # The options present are rf, nb, linear, ridge, knn 
+    model, word2index, intent2index = build_model(model='rf')
     
     while True:
         question = input('Enter question or enter Q to exit: ')

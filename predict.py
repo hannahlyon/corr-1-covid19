@@ -9,11 +9,16 @@ import pandas as pd
 import numpy as np
 from nltk.stem import WordNetLemmatizer
 from sklearn.linear_model import LogisticRegression
+from sklearn.naive_bayes import BernoulliNB
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.linear_model import RidgeClassifier
+
 from responses import *
 
 wnl = WordNetLemmatizer()
 
-def build_model():
+def build_model(model='linear'):
     df = pd.read_csv('covid19_questions2.csv')
     df = df.sample(len(df))
 
@@ -35,8 +40,19 @@ def build_model():
         X.append(temp)
     X = np.array(X)
     y = df['intent'].map(intent2index).values
-    
-    lr = LogisticRegression(multi_class='multinomial').fit(X,y)
+    # adding option for different models 
+    if model == 'rf':
+        lr = RandomForestClassifier(n_estimators = 100).fit(X,y)
+    if model == 'nb':
+        lr = BernoulliNB().fit(X,y)
+    if model =='linear':
+        lr = LogisticRegression(multi_class='multinomial').fit(X,y)
+    if model == 'knn':
+        lr = KNeighborsClassifier(n_neighbors=3).fit(X, y)
+    if model == 'ridge':
+        lr = RidgeClassifier().fit(X, y)
+
+
     return lr, word2index, intent2index
     
     
