@@ -43,14 +43,19 @@ def build_model(model='linear'):
     # adding option for different models 
     if model == 'rf':
         lr = RandomForestClassifier(n_estimators = 100).fit(X,y)
+        model_type = 'rf'
     if model == 'nb':
         lr = BernoulliNB().fit(X,y)
+        model_type = 'nb'
     if model =='linear':
         lr = LogisticRegression(multi_class='multinomial').fit(X,y)
+        model_type = 'linear'
     if model == 'knn':
         lr = KNeighborsClassifier(n_neighbors=3).fit(X, y)
+        model_type = 'knn'
     if model == 'ridge':
         lr = RidgeClassifier().fit(X, y)
+        model_type = 'ridge'
 
 
     return lr, word2index, intent2index
@@ -70,16 +75,7 @@ def predict_intent(question, model, word2index, intent2index):
             one_hot[idx] = 1
     one_hot = one_hot.reshape(1, -1)
     
-    probs = model.predict_proba(one_hot)
-    idx = np.argmax(probs[0])
+    pred = model.predict(one_hot)
+    return response_dict[index2intent[pred[0]]]
+\
 
-    
-    if probs[0][idx] < 0.5:
-        #print(unknown)
-        return unknown
-    else:
-        pred = index2intent[idx]
-        #print(response_dict[pred])
-        
-        return response_dict[pred]
-    return pred

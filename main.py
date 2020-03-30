@@ -13,7 +13,7 @@ if __name__=='__main__':
     print(hello)
     # change the model in build_model parameter 
     # The options present are rf, nb, linear, ridge, knn 
-    model, word2index, intent2index = build_model(model='rf')
+    model, word2index, intent2index = build_model(model='ridge')
     
     while True:
         question = input('Enter question or enter Q to exit: ')
