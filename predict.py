@@ -59,11 +59,11 @@ def predict_intent(question, model, word2index, intent2index):
 
     
     if probs[0][idx] < 0.5:
-        print(unknown)
-        return
+        #print(unknown)
+        return unknown
     else:
         pred = index2intent[idx]
-        print(response_dict[pred])
+        #print(response_dict[pred])
         
-        return
+        return response_dict[pred]
     return pred
