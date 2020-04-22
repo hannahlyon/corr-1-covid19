@@ -1,6 +1,7 @@
-# COVID-19 Chatbot - Correlation One Data Science for All Women's Summit Project
+# COVID-19 Chatbot
 
-This project was done as part of the Correlation 1 Data Science for All Women's Summit in March 2020. 
+This project was done as part of the Correlation One Data Science for All Women's Summit in March 2020. 
+
 Team members: 
 - Hannah Lyon
 - Stephanie Jung
